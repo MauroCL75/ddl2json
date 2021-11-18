@@ -14,17 +14,17 @@ You can also run ddl2json on the provided Dockerfile.
 
 ## Running this
 You must follow this flow:
-1. Run ./ddl2json.py "database connection1 string" > schema1.json
-2. Run ./ddl2json.py "database connection1 string" > schema2.json
-3. Run ./compare.py schema1.json schema2.json
+1. Run `./ddl2json.py "database connection1 string" > schema1.json`
+2. Run `./ddl2json.py "database connection1 string" > schema2.json`
+3. Run `./compare.py schema1.json schema2.json`
 
 ## Docker
-Create the container:
-docker build -t cxoracle .
-Run the container:
-docker run -t cxoracle:latest ./venv/bin/python3 ddl2json.py "database connection1 string" > schema1.json
+1. Create the container:
+`docker build -t cxoracle .`
+2. Run the container:
+`docker run -t cxoracle:latest ./venv/bin/python3 ddl2json.py "database connection1 string" > schema1.json`
 
-##About this
+## About this
 The ddl2json.py script get first the tables, then the columns and indexes for each table.
 The queries are on the q.py file. DDL is retrieved for tables and indexes on the generated json file.
 
