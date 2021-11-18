@@ -1,4 +1,6 @@
 
+plurals = {"INDEX": "INDEXES", "TABLE":"TABLES", "COLUMN": "COLUMNS"}
+
 qtabs="""
     SELECT table_name from user_tables order by 1 
 """
@@ -22,3 +24,9 @@ qsequences="""
     SELECT SEQUENCE_NAME, MIN_VALUE, MAX_VALUE, CACHE_SIZE, LAST_NUMBER
     from USER_SEQUENCES
 """
+
+ddlQuery="""
+    SELECT TO_CHAR(SUBSTR(DBMS_METADATA.get_ddl(:1, :2),0,3999))
+    FROM USER_%s 
+    WHERE %s_NAME=:2
+""" ##TYPE, NAME

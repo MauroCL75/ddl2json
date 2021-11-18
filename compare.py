@@ -39,6 +39,18 @@ def getIndexes(atable, jdata):
                 indexes.append(idx["name"])
     return indexes
 
+def showDDL(aType, aSet, jData):
+    aType = aType.upper()
+    for jElem in jData:
+        if aType == "INDEX":
+            for idx in jElem[aType.lower()]:
+                if idx["name"] in aSet:
+                    print("--DDL %s"%(idx["name"]))
+                    print(idx["ddl"])
+                    print("--END DDL")
+                    print()
+    
+
 def main():
     table1 = getTables(json1)
     table2 = getTables(json2)
@@ -68,6 +80,8 @@ def main():
                 diff2 = set(idx2) - set(idx1)
                 diff1 = set(idx1) - set(idx2)
                 print("%s: %s| %s: %s"%(sys.argv[2], diff1, sys.argv[1], diff2))
+                showDDL("index", diff1, json1)
+                showDDL("index", diff2, json2)
 
 if __name__ == "__main__":
     main()
